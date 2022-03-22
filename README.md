@@ -14,6 +14,9 @@ Installation
 remotes::install_github("neilcharles/scrapeWunderground")
 ```
 
+scrapeWunderground uses RSelenium and it is recommended to [run Selenium in docker](https://cran.r-project.org/web/packages/RSelenium/vignettes/docker.html).
+
+
 ## Example
 ``` r
 library(scrapeWunderground)
