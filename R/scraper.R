@@ -1,17 +1,24 @@
 #' Gets one month of daily data
 #'
-#' @param url
-#' @param remDr
+#' @param remDr a Selenium remotedriver object
+#' @param station a weather station code e.g. 'EGNM'
+#' @param year numeric year
+#' @param month numeric month
 #'
 #' @return
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' wg_get_data('EGNM', 2022, 01, remDr)
+#' }
 wg_get_data <- function(station = NULL, year = NULL, month = NULL, remDr){
 
   url = glue::glue("https://www.wunderground.com/history/monthly/{station}/date/{year}-{month}")
 
   remDr$navigate(url)
+
+  Sys.sleep(5)
 
   page_source <- rvest::read_html(remDr$getPageSource()[[1]])
 
@@ -68,5 +75,8 @@ wg_get_data <- function(station = NULL, year = NULL, month = NULL, remDr){
     dplyr::rename(precipitation = X1)
 
   weather <- date %>%
-    dplyr::bind_cols(temp, dew_point, humidity, wind, pressure, precipitation)
+    dplyr::bind_cols(temp, dew_point, humidity, wind, pressure, precipitation) %>%
+    dplyr::mutate(date = as.Date(glue::glue("{year}-{month}-{date}")))
+
+  weather
 }

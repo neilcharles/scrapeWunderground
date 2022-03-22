@@ -1,20 +1,21 @@
----
-title: "Example"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Example}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+# scrapeWunderground
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+R based scraper for wunderground historical data, based on Selenium
+
+## Installation
+
+Installation
+
+``` r
+remotes::install_github("neilcharles/scrapeWunderground")
 ```
 
-```{r setup}
+## Example
+``` r
 library(scrapeWunderground)
 
 remDr <- RSelenium::remoteDriver(remoteServerAddr = "localhost"
@@ -24,5 +25,4 @@ remDr <- RSelenium::remoteDriver(remoteServerAddr = "localhost"
 remDr$open(silent = TRUE)
 
 wg_get_daily('EGNM', '2022-01-01', '2022-03-01', remDr)
-
 ```
