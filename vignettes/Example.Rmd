@@ -1,0 +1,26 @@
+---
+title: "Example"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(scrapeWunderground)
+
+remDr <- RSelenium::remoteDriver(remoteServerAddr = "localhost"
+                                 , port = 4445L
+                                 , browserName = "firefox")
+
+remDr$open(silent = TRUE)
+
+```

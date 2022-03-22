@@ -1,0 +1,19 @@
+Package: scrapeWunderground
+Type: Package
+Title: Wunderground Scraper
+Version: 0.1.0
+Author: Neil Charles
+Maintainer: neil.d.charles@gmail.com
+Description: Selenium based scraper for wunderground historical weather data
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+imports:
+    rvest,
+    RSelenium,
+    dplyr,
+    glue
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
